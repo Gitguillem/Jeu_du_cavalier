@@ -14,6 +14,7 @@ windowSurface = pygame.display.set_mode((largeur, hauteur), 0,32)
 # Initialisation des parametres
 BLCK = 0, 0, 0
 WHITE = 255, 255, 255
+C = 123, 50, 255
 
 
 # Boucle de jeu
@@ -28,6 +29,8 @@ while running:
             running = False
 
     # Elements a tracer
+
+    #Affichage des carrés blancs:
     pygame.draw.rect(windowSurface,WHITE, (700, 000, 100, 100),)
     pygame.draw.rect(windowSurface,WHITE, (700, 600, 100, 100),)
     pygame.draw.rect(windowSurface,WHITE, (700, 400, 100, 100),)
@@ -69,6 +72,49 @@ while running:
     pygame.draw.rect(windowSurface,WHITE, (000, 100, 100, 100),)
 
 
+    #Affichage des carrés foncés:
+    pygame.draw.rect(windowSurface,C, (700, 100, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (700, 700, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (700, 500, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (700, 300, 100, 100),)
+
+    pygame.draw.rect(windowSurface,C, (600, 700, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (600, 500, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (600, 300, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (600, 100, 100, 100),)
+
+    pygame.draw.rect(windowSurface,WHITE, (500, 000, 100, 100),)
+    pygame.draw.rect(windowSurface,WHITE, (500, 600, 100, 100),)
+    pygame.draw.rect(windowSurface,WHITE, (500, 400, 100, 100),)
+    pygame.draw.rect(windowSurface,WHITE, (500, 200, 100, 100),)
+
+    pygame.draw.rect(windowSurface,WHITE, (400, 700, 100, 100),)
+    pygame.draw.rect(windowSurface,WHITE, (400, 500, 100, 100),)
+    pygame.draw.rect(windowSurface,WHITE, (400, 300, 100, 100),)
+    pygame.draw.rect(windowSurface,WHITE, (400, 100, 100, 100),)
+
+    pygame.draw.rect(windowSurface,WHITE, (300, 000, 100, 100),)
+    pygame.draw.rect(windowSurface,WHITE, (300, 600, 100, 100),)
+    pygame.draw.rect(windowSurface,WHITE, (300, 400, 100, 100),)
+    pygame.draw.rect(windowSurface,WHITE, (300, 200, 100, 100),)
+
+    pygame.draw.rect(windowSurface,WHITE, (200, 700, 100, 100),)
+    pygame.draw.rect(windowSurface,WHITE, (200, 500, 100, 100),)
+    pygame.draw.rect(windowSurface,WHITE, (200, 300, 100, 100),)
+    pygame.draw.rect(windowSurface,WHITE, (200, 100, 100, 100),)
+
+    pygame.draw.rect(windowSurface,WHITE, (100, 000, 100, 100),)
+    pygame.draw.rect(windowSurface,WHITE, (100, 600, 100, 100),)
+    pygame.draw.rect(windowSurface,WHITE, (100, 400, 100, 100),)
+    pygame.draw.rect(windowSurface,WHITE, (100, 200, 100, 100),)
+
+    pygame.draw.rect(windowSurface,WHITE, (000, 700, 100, 100),)
+    pygame.draw.rect(windowSurface,WHITE, (000, 500, 100, 100),)
+    pygame.draw.rect(windowSurface,WHITE, (000, 300, 100, 100),)
+    pygame.draw.rect(windowSurface,WHITE, (000, 100, 100, 100),)
+
     pygame.display.update()
 
 pygame.quit()
+
+
