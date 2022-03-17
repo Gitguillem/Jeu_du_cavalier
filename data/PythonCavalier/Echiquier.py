@@ -5,16 +5,24 @@
 import math
 from random import *
 # Importation de pygame
+from pygame.locals import *
 import pygame
 pygame.init()
 
 # Initialisation de la fenetre
+av = [] #Table des positions disponibles
 largeur = 800
 hauteur = 800
 windowSurface = pygame.display.set_mode((largeur, hauteur), 0,32)
 bouse = pygame.image.load("bouse.gif")
 cavalier = pygame.image.load("cavalier.gif")
+butt = pygame.image.load ("green.png")
 bouse_rect = bouse.get_rect()
+cavalier_rect = cavalier.get_rect()
+butt_position = butt.get_rect()
+#Variable de la position courrante du cavalier
+cx = 0
+cy = 0
 # Initialisation des parametres
 BLCK = 0, 0, 0
 WHITE = 255, 255, 255
@@ -24,8 +32,30 @@ def start_pos ():
     x = randint(0,7) * 100
     y = randint(0,7) * 100
     return x,y
-
 start = start_pos()
+current_pos = (start)
+(cx, cy) = (start)
+current_pos = (cx, cy)
+
+def available():
+    p1 = (cx+200, cy+100)
+    p2 = (cx+200, cy-100)
+    p3 = (cx-200, cy+100)
+    p4 = (cx-200, cy-100)
+    p5 = (cx+100, cy+200)
+    p6 = (cx+100, cy-200)
+    p7 = (cx-100, cy+200)
+    p8 = (cx-100, cy-200)
+    av.append(p1)
+    av.append(p2)
+    av.append(p3)
+    av.append(p4)
+    av.append(p5)
+    av.append(p6)
+    av.append(p7)
+    av.append(p8)
+    return av
+
 # Boucle de jeu
 clock = pygame.time.Clock()
 running = True
@@ -123,8 +153,23 @@ while running:
     pygame.draw.rect(windowSurface,C, (000, 200, 100, 100),)
 
     #DÉBUT DU JEU
+    current_pos = (start)
     windowSurface.blit(cavalier, (start))
-    pygame.display.update()
+    available()
+    windowSurface.blit(butt, (av[0]))
+    windowSurface.blit(butt, (av[1]))
+    windowSurface.blit(butt, (av[2]))
+    windowSurface.blit(butt, (av[3]))
+    windowSurface.blit(butt, (av[4]))
+    windowSurface.blit(butt, (av[5]))
+    windowSurface.blit(butt, (av[6]))
+    windowSurface.blit(butt, (av[7]))
+    if event.type == MOUSEBUTTONDOWN and event.button==1 and butt_position.collidepoint(event.pos):
+        current_pos = event.pos
+        print("CLICKEEEEEEED")
+        cavalier_rect = butt_position
+        windowSurface.blit(cavalier, butt_position)
+    pygame.display.flip()
 
 pygame.quit()
 
