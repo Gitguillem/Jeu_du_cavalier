@@ -2,6 +2,8 @@
 #Créé par Anthony Presman
 #Projet: Jeu du cavalier
 
+import math
+from random import *
 # Importation de pygame
 import pygame
 pygame.init()
@@ -11,12 +13,19 @@ largeur = 800
 hauteur = 800
 windowSurface = pygame.display.set_mode((largeur, hauteur), 0,32)
 bouse = pygame.image.load("bouse.gif")
+cavalier = pygame.image.load("cavalier.gif")
+bouse_rect = bouse.get_rect()
 # Initialisation des parametres
 BLCK = 0, 0, 0
 WHITE = 255, 255, 255
-C = 123, 50, 255
+C = BLCK
 
+def start_pos ():
+    x = randint(0,7) * 100
+    y = randint(0,7) * 100
+    return x,y
 
+start = start_pos()
 # Boucle de jeu
 clock = pygame.time.Clock()
 running = True
@@ -113,6 +122,10 @@ while running:
     pygame.draw.rect(windowSurface,C, (000, 400, 100, 100),)
     pygame.draw.rect(windowSurface,C, (000, 200, 100, 100),)
 
+    #DÉBUT DU JEU
+    windowSurface.blit(cavalier, (start))
     pygame.display.update()
 
 pygame.quit()
+
+
