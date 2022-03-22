@@ -2,7 +2,6 @@
 #Créé par Anthony Presman
 #Projet: Jeu du cavalier
 
-import math
 from random import *
 # Importation de pygame
 from pygame.locals import *
@@ -17,6 +16,8 @@ windowSurface = pygame.display.set_mode((largeur, hauteur), 0,32)
 bouse = pygame.image.load("bouse.gif")
 cavalier = pygame.image.load("cavalier.gif")
 butt = pygame.image.load ("green.png")
+butt_position = butt.get_rect()
+butt_position.center = (100/2, 100/2)
 bouse_rect = bouse.get_rect()
 cavalier_rect = cavalier.get_rect()
 butt_position = butt.get_rect()
@@ -38,14 +39,14 @@ current_pos = (start)
 current_pos = (cx, cy)
 
 def available():
-    p1 = (cx+200, cy+100)
-    p2 = (cx+200, cy-100)
-    p3 = (cx-200, cy+100)
-    p4 = (cx-200, cy-100)
-    p5 = (cx+100, cy+200)
-    p6 = (cx+100, cy-200)
-    p7 = (cx-100, cy+200)
-    p8 = (cx-100, cy-200)
+    p1 = (cx+200, cy+100, 100, 100)
+    p2 = (cx+200, cy-100, 100, 100)
+    p3 = (cx-200, cy+100, 100, 100)
+    p4 = (cx-200, cy-100, 100, 100)
+    p5 = (cx+100, cy+200, 100, 100)
+    p6 = (cx+100, cy-200, 100, 100)
+    p7 = (cx-100, cy+200, 100, 100)
+    p8 = (cx-100, cy-200, 100, 100)
     av.append(p1)
     av.append(p2)
     av.append(p3)
@@ -164,11 +165,18 @@ while running:
     windowSurface.blit(butt, (av[5]))
     windowSurface.blit(butt, (av[6]))
     windowSurface.blit(butt, (av[7]))
-    if event.type == MOUSEBUTTONDOWN and event.button==1 and butt_position.collidepoint(event.pos):
-        current_pos = event.pos
-        print("CLICKEEEEEEED")
-        cavalier_rect = butt_position
-        windowSurface.blit(cavalier, butt_position)
+    butt_position = butt.get_rect()
+
+    if event.type == MOUSEBUTTONDOWN and event.button==1:
+        mouse_pos = pygame.mouse.get_pos()
+        print (mouse_pos)
+        av = available()
+        for i in range (len(av)):
+            if mouse_pos in av:
+                print("click")
+                current_pos = mouse_pos
+                cavalier_rect = mouse_pos
+                windowSurface.blit(cavalier, cavalier_rect)
     pygame.display.flip()
 
 pygame.quit()
