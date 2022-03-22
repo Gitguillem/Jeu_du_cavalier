@@ -38,24 +38,18 @@ current_pos = (start)
 (cx, cy) = (start)
 current_pos = (cx, cy)
 
-def available():
-    p1 = (cx+200, cy+100, 100, 100)
-    p2 = (cx+200, cy-100, 100, 100)
-    p3 = (cx-200, cy+100, 100, 100)
-    p4 = (cx-200, cy-100, 100, 100)
-    p5 = (cx+100, cy+200, 100, 100)
-    p6 = (cx+100, cy-200, 100, 100)
-    p7 = (cx-100, cy+200, 100, 100)
-    p8 = (cx-100, cy-200, 100, 100)
-    av.append(p1)
-    av.append(p2)
-    av.append(p3)
-    av.append(p4)
-    av.append(p5)
-    av.append(p6)
-    av.append(p7)
-    av.append(p8)
-    return av
+GRILLE = [
+[0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0]
+           ]
+
+
 
 # Boucle de jeu
 clock = pygame.time.Clock()
@@ -112,71 +106,14 @@ while running:
     pygame.draw.rect(windowSurface,WHITE, (000, 100, 100, 100),)
 
 
-    #Affichage des carrés foncés:
-    pygame.draw.rect(windowSurface,C, (700, 100, 100, 100),)
-    pygame.draw.rect(windowSurface,C, (700, 700, 100, 100),)
-    pygame.draw.rect(windowSurface,C, (700, 500, 100, 100),)
-    pygame.draw.rect(windowSurface,C, (700, 300, 100, 100),)
-
-    pygame.draw.rect(windowSurface,C, (600, 00, 100, 100),)
-    pygame.draw.rect(windowSurface,C, (600, 600, 100, 100),)
-    pygame.draw.rect(windowSurface,C, (600, 400, 100, 100),)
-    pygame.draw.rect(windowSurface,C, (600, 200, 100, 100),)
-
-    pygame.draw.rect(windowSurface,C, (500, 100, 100, 100),)
-    pygame.draw.rect(windowSurface,C, (500, 700, 100, 100),)
-    pygame.draw.rect(windowSurface,C, (500, 500, 100, 100),)
-    pygame.draw.rect(windowSurface,C, (500, 300, 100, 100),)
-
-    pygame.draw.rect(windowSurface,C, (400, 00, 100, 100),)
-    pygame.draw.rect(windowSurface,C, (400, 600, 100, 100),)
-    pygame.draw.rect(windowSurface,C, (400, 400, 100, 100),)
-    pygame.draw.rect(windowSurface,C, (400, 200, 100, 100),)
-
-    pygame.draw.rect(windowSurface,C, (300, 100, 100, 100),)
-    pygame.draw.rect(windowSurface,C, (300, 700, 100, 100),)
-    pygame.draw.rect(windowSurface,C, (300, 500, 100, 100),)
-    pygame.draw.rect(windowSurface,C, (300, 300, 100, 100),)
-
-    pygame.draw.rect(windowSurface,C, (200, 00, 100, 100),)
-    pygame.draw.rect(windowSurface,C, (200, 600, 100, 100),)
-    pygame.draw.rect(windowSurface,C, (200, 400, 100, 100),)
-    pygame.draw.rect(windowSurface,C, (200, 200, 100, 100),)
-
-    pygame.draw.rect(windowSurface,C, (100, 100, 100, 100),)
-    pygame.draw.rect(windowSurface,C, (100, 700, 100, 100),)
-    pygame.draw.rect(windowSurface,C, (100, 500, 100, 100),)
-    pygame.draw.rect(windowSurface,C, (100, 300, 100, 100),)
-
-    pygame.draw.rect(windowSurface,C, (000, 00, 100, 100),)
-    pygame.draw.rect(windowSurface,C, (000, 600, 100, 100),)
-    pygame.draw.rect(windowSurface,C, (000, 400, 100, 100),)
-    pygame.draw.rect(windowSurface,C, (000, 200, 100, 100),)
 
     #DÉBUT DU JEU
     current_pos = (start)
     windowSurface.blit(cavalier, (start))
-    available()
-    windowSurface.blit(butt, (av[0]))
-    windowSurface.blit(butt, (av[1]))
-    windowSurface.blit(butt, (av[2]))
-    windowSurface.blit(butt, (av[3]))
-    windowSurface.blit(butt, (av[4]))
-    windowSurface.blit(butt, (av[5]))
-    windowSurface.blit(butt, (av[6]))
-    windowSurface.blit(butt, (av[7]))
-    butt_position = butt.get_rect()
-
     if event.type == MOUSEBUTTONDOWN and event.button==1:
         mouse_pos = pygame.mouse.get_pos()
         print (mouse_pos)
-        av = available()
-        for i in range (len(av)):
-            if mouse_pos in av:
-                print("click")
-                current_pos = mouse_pos
-                cavalier_rect = mouse_pos
-                windowSurface.blit(cavalier, cavalier_rect)
+
     pygame.display.flip()
 
 pygame.quit()
