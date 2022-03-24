@@ -16,6 +16,7 @@ bouse = pygame.image.load("bouse.gif")
 cavalier = pygame.image.load("cavalier.gif")
 bouse_rect = bouse.get_rect()
 cavalier_rect = cavalier.get_rect()
+compteur = 0
 
 #Variable de la position courrante du cavalier
 cx = 0
@@ -154,8 +155,8 @@ while running:
 
 
     #DÉBUT DU JEU
-
     if event.type == MOUSEBUTTONDOWN and event.button==1:
+        compteur += 1
         mouse_pos = pygame.mouse.get_pos()
         new_x = mouse_pos[0] // 100
         new_y = mouse_pos[1] // 100
@@ -164,7 +165,13 @@ while running:
         windowSurface.blit(cavalier, current_pos)
         print (mouse_pos)
         pygame.display.flip()
+    if compteur >= 64:
+        if 0 in GRILLE:
+            print("U R A LOSER")
+        elif 0 not in GRILLE:
+            print("U R NOT USELESS")
     print ("Grille:",GRILLE)
+    print ("Compteur:", compteur)
 
 
 pygame.quit()
