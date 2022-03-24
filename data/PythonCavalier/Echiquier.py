@@ -9,21 +9,18 @@ import pygame
 pygame.init()
 
 # Initialisation de la fenetre
-av = [] #Table des positions disponibles
 largeur = 800
 hauteur = 800
 windowSurface = pygame.display.set_mode((largeur, hauteur), 0,32)
 bouse = pygame.image.load("bouse.gif")
 cavalier = pygame.image.load("cavalier.gif")
-butt = pygame.image.load ("green.png")
-butt_position = butt.get_rect()
-butt_position.center = (100/2, 100/2)
 bouse_rect = bouse.get_rect()
 cavalier_rect = cavalier.get_rect()
-butt_position = butt.get_rect()
+
 #Variable de la position courrante du cavalier
 cx = 0
 cy = 0
+
 # Initialisation des parametres
 BLCK = 0, 0, 0
 WHITE = 255, 255, 255
@@ -48,6 +45,15 @@ GRILLE = [
 [0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0]
            ]
+
+current_pos = (start)
+windowSurface.blit(cavalier, (start))
+(cx, cy) = (start)
+gri_pos_x = round(cx / 100)
+gri_pos_y = round(cy / 100)
+GRILLE[gri_pos_y] [gri_pos_x] = 1
+
+pygame.display.flip()
 
 
 
@@ -105,16 +111,61 @@ while running:
     pygame.draw.rect(windowSurface,WHITE, (000, 300, 100, 100),)
     pygame.draw.rect(windowSurface,WHITE, (000, 100, 100, 100),)
 
+    #Tracer les carrés noirs
+    pygame.draw.rect(windowSurface,C, (600, 00, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (600, 600, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (600, 400, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (600, 200, 100, 100),)
+
+    pygame.draw.rect(windowSurface,C, (500, 100, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (500, 700, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (500, 500, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (500, 300, 100, 100),)
+
+    pygame.draw.rect(windowSurface,C, (700, 100, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (700, 700, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (700, 500, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (700, 300, 100, 100),)
+
+    pygame.draw.rect(windowSurface,C, (400, 00, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (400, 600, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (400, 400, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (400, 200, 100, 100),)
+
+    pygame.draw.rect(windowSurface,C, (300, 100, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (300, 700, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (300, 500, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (300, 300, 100, 100),)
+
+    pygame.draw.rect(windowSurface,C, (200, 00, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (200, 600, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (200, 400, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (200, 200, 100, 100),)
+
+    pygame.draw.rect(windowSurface,C, (100, 100, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (100, 700, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (100, 500, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (100, 300, 100, 100),)
+
+    pygame.draw.rect(windowSurface,C, (000, 00, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (000, 600, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (000, 400, 100, 100),)
+    pygame.draw.rect(windowSurface,C, (000, 200, 100, 100),)
 
 
     #DÉBUT DU JEU
-    current_pos = (start)
-    windowSurface.blit(cavalier, (start))
+
     if event.type == MOUSEBUTTONDOWN and event.button==1:
         mouse_pos = pygame.mouse.get_pos()
+        new_x = mouse_pos[0] // 100
+        new_y = mouse_pos[1] // 100
+        GRILLE[new_y][new_x] = 1
+        current_pos = (new_x * 100, new_y*100)
+        windowSurface.blit(cavalier, current_pos)
         print (mouse_pos)
+        pygame.display.flip()
+    print ("Grille:",GRILLE)
 
-    pygame.display.flip()
 
 pygame.quit()
 
