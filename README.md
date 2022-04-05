@@ -14,3 +14,6 @@ Le cavalier doit passer par toutes les cases de l'échiquier sans revenir là-ba
 - Pygame
 - Sprites envoyés par le professeur
 - Implimentation web par serveur
+
+## Liens
+- [Page 1](http://math.univ-lyon1.fr/irem/Formation_ISN/formation_recursivite/grille/cavalier.html)
