@@ -1,6 +1,4 @@
 ## Programmation
-- Mouvement correct du cavalier (en L)
-- Vérification de la case (s'il y a pas de bouse)
 - Compteur
 
 ## Visuel
