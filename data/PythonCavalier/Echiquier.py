@@ -16,6 +16,7 @@ bouse = pygame.image.load("bouse.gif")
 cavalier = pygame.image.load("cavalier.gif")
 bouse_rect = bouse.get_rect()
 compteur = 0
+dispo = True
 
 #Variable de la position courrante du cavalier
 cx = 0
@@ -25,17 +26,18 @@ cy = 0
 BLCK = 0, 0, 0
 WHITE = 255, 255, 255
 C = BLCK
+TRS = (0, 0, 0, 0)
 
 def start_pos ():
-    x = randint(0,7) * 100
-    y = randint(0,7) * 100
+    x = randint(0,7) * 100 + 18
+    y = randint(0,7) * 100 + 17
     return x,y
 start = start_pos()
 current_pos = (start)
 (cx, cy) = (start)
 current_pos = (cx, cy)
 
-AVA = [[1,2],[1,-2],[-1,2],[-1,-2],[2,1],[2,-1],[-2,1],[-2,-1]]
+AVA = [(1,2),(1,-2),(-1,2),(-1,-2),(2,1),(2,-1),(-2,1),(-2,-1)]
 
 GRILLE = [
 [0,0,0,0,0,0,0,0],
@@ -157,22 +159,40 @@ while running:
             running = False
 
 
-
     # DESSINAGE DU CAVALIER
     windowSurface.blit(cavalier, current_pos)
-    cavalier_rect = cavalier.get_rect()
-    print("Grille", GRILLE)
 
+    # Lorsqu'on clique:
     if event.type == MOUSEBUTTONDOWN and event.button==1:
+        cavalier = cavalier
         mouse_pos = pygame.mouse.get_pos()
-        GRILLE[cy][cx] = 2
-        cx = mouse_pos[0] // 100
-        cy = mouse_pos[1] // 100
-        GRILLE[cy][cx] = 1
-        new_pos = (cx * 100, cy * 100)
-        current_pos = new_pos
-        print("Current",current_pos)
-        print("Grille", GRILLE)
+        m_x = mouse_pos[0] // 100
+        m_y = mouse_pos[1] // 100
+        cords = (m_x,m_y)
+        old_cords = (cx,cy)
+        if GRILLE[m_y][m_x] == 2:
+            print("Position indisponible")
+        elif GRILLE[m_y][m_x] == 0:
+            for i in range (len(AVA)):
+                if m_x == cx + AVA[i][0]:
+                    if m_y == cy + AVA[i][1]:
+                        dispo = True
+                        GRILLE[cy][cx] = 2
+                        windowSurface.blit(bouse, (cx*100 + 16, cy*100 + 34))
+                        cx = m_x
+                        cy = m_y
+                        GRILLE[cy][cx] = 1
+                        new_pos = (cx * 100 + 18, cy * 100 + 17)
+                        current_pos = new_pos
+                        compteur += 1
+
+
+
+    #Position disponible?
+    if dispo == False:
+        print ("PLUS DE POSITIONS DISPONIBLES")
+
+
     pygame.display.flip()
 
 
