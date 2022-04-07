@@ -12,11 +12,13 @@ pygame.init()
 largeur = 800
 hauteur = 800
 windowSurface = pygame.display.set_mode((largeur, hauteur), 0,32)
+pygame.display.set_caption("Jeu du cavalier | Créé par Anthony, Íngrid, Thalia")
 bouse = pygame.image.load("bouse.gif")
 cavalier = pygame.image.load("cavalier.gif")
+pygame.display.set_icon(cavalier)
 bouse_rect = bouse.get_rect()
 compteur = 0
-dispo = True
+non_dispos = 0
 
 #Variable de la position courrante du cavalier
 cx = 0
@@ -176,7 +178,6 @@ while running:
             for i in range (len(AVA)):
                 if m_x == cx + AVA[i][0]:
                     if m_y == cy + AVA[i][1]:
-                        dispo = True
                         GRILLE[cy][cx] = 2
                         windowSurface.blit(bouse, (cx*100 + 16, cy*100 + 34))
                         cx = m_x
@@ -189,11 +190,14 @@ while running:
 
 
     #Position disponible?
-    if dispo == False:
-        print ("PLUS DE POSITIONS DISPONIBLES")
+
+
+    if non_dispos == 8:
+        print("PLUS DE POSITIONS DISPONIBLES")
+
+
 
 
     pygame.display.flip()
-
 
 pygame.quit()
