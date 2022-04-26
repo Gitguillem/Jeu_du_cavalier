@@ -17,3 +17,4 @@ Le cavalier doit passer par toutes les cases de l'échiquier sans revenir là-ba
 
 ## Liens utiles
 - [Page 1](http://math.univ-lyon1.fr/irem/Formation_ISN/formation_recursivite/grille/cavalier.html)
+- [Conversion en Android](https://avionmission.github.io/blog/convert-py-to-apk-using-python-and-buildozer/)
