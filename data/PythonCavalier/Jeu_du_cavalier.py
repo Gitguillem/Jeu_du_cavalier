@@ -24,11 +24,16 @@ non_dispos = 0
 cx = 0
 cy = 0
 
+#Tableau des mouvements du cavalier
+AVA = [(1,2),(1,-2),(-1,2),(-1,-2),(2,1),(2,-1),(-2,1),(-2,-1)]
+
 # Initialisation des parametres
 BLCK = 0, 0, 0
 WHITE = 255, 255, 255
 C = BLCK
-TRS = (0, 0, 0, 0)
+
+
+
 
 def start_pos ():
     x = randint(0,7) * 100 + 18
@@ -39,7 +44,7 @@ current_pos = (start)
 (cx, cy) = (start)
 current_pos = (cx, cy)
 
-AVA = [(1,2),(1,-2),(-1,2),(-1,-2),(2,1),(2,-1),(-2,1),(-2,-1)]
+
 
 GRILLE = [
 [0,0,0,0,0,0,0,0],
@@ -59,12 +64,37 @@ cx = cx // 100
 cy = cy // 100
 GRILLE[gri_pos_y] [gri_pos_x] = 1
 
+#Vérification des positions diponibles:
+def positions_dispo():
+    temp = []
+    for i in range (len(AVA)):
+        rx = cx + AVA[i][0]
+        ry = cy + AVA[i][0]
+        try:
+            if GRILLE[ry][rx] == 2:
+                temp.append(2)
+            elif GRILLE[ry][rx] == 0:
+                temp.append(0)
+        except IndexError:
+            temp.append(2)
+
+    return temp
+
+def check_pos():
+    liste = positions_dispo()
+    print(liste)
+    if 0 in liste == True:
+        print("OK")
+    elif 0 not in liste:
+        print("LOOSER!")
+
+
+
 pygame.display.flip()
 
 
     # Elements a tracer
-
-    #Affichage des carrés blancs:
+        #Affichage des carrés blancs:
 pygame.draw.rect(windowSurface,WHITE, (700, 000, 100, 100),)
 pygame.draw.rect(windowSurface,WHITE, (700, 600, 100, 100),)
 pygame.draw.rect(windowSurface,WHITE, (700, 400, 100, 100),)
@@ -147,6 +177,8 @@ pygame.draw.rect(windowSurface,C, (000, 400, 100, 100),)
 pygame.draw.rect(windowSurface,C, (000, 200, 100, 100),)
 
 
+
+
 # Boucle de jeu
 clock = pygame.time.Clock()
 running = True
@@ -161,11 +193,14 @@ while running:
             running = False
 
 
+
     # DESSINAGE DU CAVALIER
     windowSurface.blit(cavalier, current_pos)
 
     # Lorsqu'on clique:
+
     if event.type == MOUSEBUTTONDOWN and event.button==1:
+
         cavalier = cavalier
         mouse_pos = pygame.mouse.get_pos()
         m_x = mouse_pos[0] // 100
@@ -186,14 +221,7 @@ while running:
                         new_pos = (cx * 100 + 18, cy * 100 + 17)
                         current_pos = new_pos
                         compteur += 1
-
-
-
-    #Position disponible?
-
-
-    if non_dispos == 8:
-        print("PLUS DE POSITIONS DISPONIBLES")
+                        check_pos()
 
 
 
