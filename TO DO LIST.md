@@ -1,6 +1,6 @@
 ## Programmation
-- Vérification de s'il y a des positions disponibles (partiellement fait)
+- Sons de jeu, perte et victoire
 
 ## Visuel
 - Effaçage du cavalier
-- Écran de fin de jeu
+
