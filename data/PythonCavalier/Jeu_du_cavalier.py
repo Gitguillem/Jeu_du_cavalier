@@ -13,12 +13,14 @@ largeur = 800
 hauteur = 800
 windowSurface = pygame.display.set_mode((largeur, hauteur), 0,32)
 pygame.display.set_caption("Jeu du cavalier | Créé par Anthony, Íngrid, Thalia")
+game_win = pygame.image.load("GAME_W.jpg")
+game_over = pygame.image.load("GAME_OVER.jpg")
 bouse = pygame.image.load("bouse.gif")
 cavalier = pygame.image.load("cavalier.gif")
 pygame.display.set_icon(cavalier)
 bouse_rect = bouse.get_rect()
-compteur = 0
-non_dispos = 0
+compteur = 1
+
 
 #Variable de la position courrante du cavalier
 cx = 0
@@ -66,28 +68,31 @@ GRILLE[gri_pos_y] [gri_pos_x] = 1
 
 #Vérification des positions diponibles:
 def positions_dispo():
-    temp = []
+    non_dispos = 0
     for i in range (len(AVA)):
         rx = cx + AVA[i][0]
-        ry = cy + AVA[i][0]
+        ry = cy + AVA[i][1]
         try:
             if GRILLE[ry][rx] == 2:
-                temp.append(2)
+                non_dispos += 1
             elif GRILLE[ry][rx] == 0:
-                temp.append(0)
+                non_dispos += 0
         except IndexError:
-            temp.append(2)
+            non_dispos += 1
 
-    return temp
+    return non_dispos
+
 
 def check_pos():
-    liste = positions_dispo()
-    print(liste)
-    if 0 in liste == True:
-        print("OK")
-    elif 0 not in liste:
-        print("LOOSER!")
+    non_dispos = positions_dispo()
+    if non_dispos != 8:
+        None
+    elif non_dispos == 8:
+        windowSurface.blit(game_over, (0, 0))
 
+def victoire():
+    if compteur >= 64:
+        windowSurface.blit(game_win, (0, 0))
 
 
 pygame.display.flip()
@@ -221,10 +226,10 @@ while running:
                         new_pos = (cx * 100 + 18, cy * 100 + 17)
                         current_pos = new_pos
                         compteur += 1
-                        check_pos()
 
-
-
+    # Vérification de perdu ou gagné
+    victoire()
+    check_pos()
 
     pygame.display.flip()
 
