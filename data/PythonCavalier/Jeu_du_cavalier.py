@@ -25,7 +25,7 @@ bouse = pygame.image.load("bouse.gif")
 cavalier = pygame.image.load("cavalier.gif")
 VicSFX = pygame.mixer.Sound("VicSFX.wav")
 LossSFX = pygame.mixer.Sound("LossSFX.wav")
-
+LossSFX.set_volume(0.7)
 
 # Initialisation de la fenetre
 largeur = 800
