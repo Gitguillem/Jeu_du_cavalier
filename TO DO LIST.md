@@ -1,5 +1,5 @@
 ## Visuel
-- Effaçage du cavalier
+- Son qui se repete qu'une fois
 
 ## Programmation
 - Passer à Android (.apk)
