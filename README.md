@@ -16,5 +16,5 @@ Le cavalier doit passer par toutes les cases de l'échiquier sans revenir là-ba
 - Implimentation web par serveur
 
 ## Liens utiles
-- [Page 1](http://math.univ-lyon1.fr/irem/Formation_ISN/formation_recursivite/grille/cavalier.html)
+- [Page ](http://math.univ-lyon1.fr/irem/Formation_ISN/formation_recursivite/grille/cavalier.html) de l'IRM de Lyon sur le problème des déplacements du cavalier
 - [Conversion en Android](https://avionmission.github.io/blog/convert-py-to-apk-using-python-and-buildozer/)
