@@ -7,7 +7,6 @@ from random import *
 from pygame.locals import *
 import wave
 import pygame
-import time
 pygame.init()
 pygame.mixer.init()
 
