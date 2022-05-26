@@ -337,7 +337,7 @@ while running:
                         pygame.draw.rect(windowSurface,BLACK, (100, 500, 100, 100),)
                         pygame.draw.rect(windowSurface,BLACK, (100, 300, 100, 100),)
 
-                        pygame.draw.rect(windowSurface,BLACK, (000, 00, 100, 100),)
+                        pygame.draw.rect(windowSurface,BLACK, (000, 000, 100, 100),)
                         pygame.draw.rect(windowSurface,BLACK, (000, 600, 100, 100),)
                         pygame.draw.rect(windowSurface,BLACK, (000, 400, 100, 100),)
                         pygame.draw.rect(windowSurface,BLACK, (000, 200, 100, 100),)
